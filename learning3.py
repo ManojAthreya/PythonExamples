@@ -1,4 +1,4 @@
-#08/05/2023
+#09/05/2023
 '''
 Python Collections (Arrays)
 
@@ -10,177 +10,94 @@ There are four collection data types in the Python programming language:
  -> Dictionary is a collection which is ordered** and changeable. No duplicate members.
 '''
 
-#LISTS (Ordered, Changable and allow duplicates)
-#List items are indexed
-mylist=[]
-mylist.append(1)
-mylist.append(2)
-mylist.append(3)
-print(mylist)
+#TUPLES () (ORDERED, UNCHANGEABLE, ALLOW DUPLICATES)
 
-print(mylist[:2])
-print(mylist[1:3])
+#Modifications in Tuple by converting it to list and then we have to do
 
-#iterating
-for x in mylist:
-    print(x)
+t = (1,'apple',True, 1)
+print(t)
+print(type(t))
+print(len(t))
 
+t1=("apple",) #Tuple
+t2=("apple") #Not a tuple it is a string
+print(type(t1))
+print(type(t2))
+print(t1, "\n", t2)
 
-even_numbers = [2,4,6,8]
-odd_numbers = [1,3,5,7]
-all_numbers = odd_numbers + even_numbers
-print(all_numbers)
+#Tuple accessing is same as LIST
+thistuple = ("apple", "banana", "cherry", "orange", "kiwi", "melon", "mango")
+print(thistuple[2:5])
+print(thistuple[-1])
+print(thistuple[::-1])
+print(thistuple[1::2]) #even index values
+print(thistuple[::2]) # odd index values
 
-print([1,2,3] * 3)
-
-
-#Small program of lists
-numbers = []
-strings = []
-names = ["John", "Eric", "Jessica",1,2,3,4]
-print("Length of names list: %d" % len(names))
-
-# write your code here
-second_name = names[1]
+if "cherry" in thistuple:
+    print("Hooray! you won")
 
 
-for x in names:
-    a=type(x)
-    if a == str:
-        strings.append(x)
-    else:
-        numbers.append(x)
+#UPDATE TUPLES BY CONVERTING IT TO LIST
+l=list(thistuple)
+print(l)
+l[1]="green apple"
+thistuple=tuple(l)
+print(thistuple)
+print(len(thistuple)) 
 
-# this code should write out the filled arrays and the second name in the names list (Eric).
-print(numbers)
-print(strings)
-print("The second name on the names list is %s" % second_name)
-
-#Access List Items
-#Through Indices
-# list[2:3]
-# list[::-1] to make reverse of a string
-# [:] all elements [:3] first 3 elements [2:] from 3rd element
-
-#in operator
-names=['John','Rick']
-name = "Joe"
-if name in names:
-    print("Your name is either John or Rick.")
-elif(name == names[0]):
-    print('Your name is %s' % name)
-else:
-    print('Your name is %s' % name)
-
-fruits = []
-fruits.append('apple')
-fruits.append('banana')
-fruits.append('cherry')
-fruits.append('kiwi')
-
-new_a_fruits=[]
-
-for x in fruits:
-    if 'a' in x:
-        new_a_fruits.append(x)
-    
-print('Fruits with letter a in them:', new_a_fruits)
-
-#Change the list items
-thislist = ["apple", "banana", "cherry"]
-thislist[1:3] = ["watermelon"]
-print(thislist) 
-
-#Insert list item
-thislist = ["apple", "banana", "cherry"]
-thislist.insert(2, "watermelon")
-print(thislist)
-
-#Add a list item by append, insert and extend
-fruits1=['mango']
-fruits2=tuple(('strawberry','raspberry'))
-thislist = ["apple", "banana", "cherry"]
-thislist.append("orange")
-thislist.insert(2,'kiwi')
-thislist.extend(fruits1)   #extends with a given list
-thislist.extend(fruits2)   #extends tuple
-print(thislist) 
+y = list(thistuple)
+y.append("orange")
+thistuple = tuple(y)
+print(thistuple)
+print(len(thistuple))
 
 
-#Remove an item from list by remove (item specified), del (deletes specified index  /  no arguments whole list), pop (last index of item) 
-#Clear() clears elements in the list and it will be an empty list.
-fruits = ["apple",'kiwi','orange','berry', "banana", "dragon fruit", 'cherry']
-myfruits=[]
-mynewfruits=[]
-fruits.sort() #sorting of list in ascending
-print("Sorted fruits:",fruits)
-fruits.sort(reverse = True) #sorting of list in descending
-print("Reverse Sorted fruits",fruits)
-a=fruits.index('cherry')
-print("Index of cherry:",a)
-myfruits=fruits.copy()
-print('Copy of fruits to new list:',myfruits)
-mynewfruits=list(fruits)
-print('Copy of fruits:',mynewfruits)
-fruits.remove("banana")
-print(fruits)
-fruits.pop()
-print(fruits)
-fruits.pop(1)
-print(fruits)
-del fruits[1]
-print(fruits)
-fruits.clear()
+fruits=("apple", "kiwi", "melon", "mango")
+fruits=list(fruits)
+fruits.remove("kiwi")
 print(fruits)
 del fruits
-#print(fruits) no fruits list will be there
+#print(fruits)
 
-#JOIN Lists (by + operator, append and extend)
-list1 = ["a", "b", "c"]
-list2 = [1, 2, 3]
+#Looping through tuples
 
-list3 = list1 + list2
-print(list3)
-
-
-#LOOP through lists
-a = ["apple", "banana", "cherry"]
-e=[]
-for x in a:
+thistuple = ("apple", "banana", "cherry")
+for x in thistuple:
   print(x) 
-  if 'a' in x:
-      e.append(x)
-print('New List:',e)
 
-b = ["apple", "banana", "cherry"]
-for i in range(len(b)):
-  print(b[i]) 
+#index loop through in tuple
+for i in range(len(thistuple)):
+   print(i) #displays index
 
-c=["apple", "banana", "cherry"]
-d=[]
-for i in range(len(c)):
-    if 'c' in c[i]:
-        d.append(c[i])
-print("New List:",d)
-
-#While
-thislist = ["apple", "banana", "cherry"]
+#while loop
+tup = ("apple", "banana", "cherry")
 i = 0
-while i < len(thislist):
-  print(thislist[i])
-  i = i + 1
+while i < len(tup):
+  print(tup[i])
+  i = i + 1 
+
+#joining of tuples
+tuple1 = ("a", "b" , "c")
+tuple2 = (1, 2, 3)
+tuple3 = tuple1 + tuple2
+print(tuple3)
+
+#multiply tuple values in tuple
+fruits = ("apple", "banana", "cherry")
+fruits = fruits * 2
+print(fruits) 
+
+#counts no.of times the value occurs
+a=fruits.count("apple")
+print(a)
+
+#shows the index of occurance normally the first one
+b=fruits.index("banana")
+print(b)
+
 
 '''
-Methods in List
-append()
-clear()
-copy()
+METHODS IN TUPLE
 count()
-extend()
 index()
-insert()
-pop()
-remove()
-reverse()
-sort()
 '''
