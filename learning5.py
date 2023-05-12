@@ -1,4 +1,4 @@
-#10/05/2023
+#11/05/2023
 '''
 Python Collections (Arrays)
 
@@ -10,79 +10,148 @@ There are four collection data types in the Python programming language:
  -> Dictionary is a collection which is ordered** and changeable. No duplicate members.
 '''
 
-#SET {} (UNORDERED, UNCHANGABLE, UNINDEXED)
+#Dictionaries {'key':'value'} (Ordered, changable, No duplicate values)
 
-#Once set is created you cannot change the items but you can add or remove items.
+#duplicate values are ignored and if value is different recent value is taken for that key.
 
-a = {"apple", "banana", "cherry",1,2}
-print(a)                               #for each output the index of strings are shuffled.
-print(type(a))
-print(len(a))
+car =	{
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964,
+  "colors": ["red", "white", "blue"]
+}
+print(car)
+print(car['brand'])
+print("Dictionary length:",len(car))
+print(type(car))
 
-#loop through sets
-for x in a:
+#Accessing dictionary items
+
+#1
+print(car['colors'])
+print(car['brand'])
+print(car['year'])
+
+#2 using get()
+print(car.get("model"))
+print(car.get("year"))
+print(car.get("brand"))
+print(car.get("color")) #None is displayed if key is wrong
+
+print(car.keys())  # returns keys in the dictionary
+print(car.values()) # returns values in the dictionary
+print(car.items()) #gives key value pairs of the dictionary
+
+if "colors" in car:
+    print("Colors option available in car")
+
+
+#Changing / adding values in dictionary
+
+#1
+car["brand"]="BMW"
+print(car)
+
+#new key value pair added
+car["sold"]=225
+print(car)
+
+#2 using update
+car.update({"model":"X3"})
+print(car)
+
+#new key value pair added
+car.update({"sold":500})
+print(car)
+
+#Removing items from dictionary pop(), del(), clear()
+
+print("Original dictionary:",car)
+car.pop('colors') #removes specified key value pair
+print(car)
+car.popitem()   #removes sold as it was last inserted
+print(car)
+
+#del car['model'] # removes the specified as well as the whole dictionary.
+#car.clear() #empties the dictionary
+
+#Looping in Dictionaries
+
+for x in car:        #prints keys of the dictionary
     print(x)
 
-print("cherry" in a) #Boolean value
+for x in car:        #prints values 
+    print(car[x])
 
-#To add new items to a set one value at a time
-a.add("kiwi")
-a.add("mango")
-a.add("apple")
-print(a)
+for x in car.keys():
+    print(x)
 
-#no duplicates it executes but not add that item to the set.
+for x in car.values():
+    print(x)
 
-#UPDATE method adds not only set but list and tuples and the end goal is set.
-thisset = {"apple", "banana", "cherry"}
-s2={"a","b","c"}
-mylist = ["kiwi", "orange"]
-mylist1 = ["d"]
-mytuple=("mango",)
-thisset.update(mylist,mytuple)  # accepts multiple arguments
-thisset.update(mytuple)
-s3=thisset.union(s2)
-s4=thisset.union(mylist1)
-print(thisset)
-print(type(thisset))
-print(len(thisset))
-print(s3)
-print(s4)
+#Loop through keys and values
+for x,y in car.items():
+    print(x,y)
 
-#Remove set items has remove(), discard(), pop(), clear(), del
 
-s = {"apple", "banana", "cherry", "orange", "kiwi", "melon", "mango"}
-s.remove("mango") #delete mango if that element not there raises error
-print(s)
-s.discard("kiwi") #deletes kiwi if that element not present does not raises the error
-print(s)
-s.pop()   #randomly deletes an element
-print(s)
-s1=s          #copy of set
-print(s1)
-print(type(s1))
-print(s)
-s.clear() #cleares the set elements
-print(s)
-del s    #deletes the entire set
+cars1=car.copy()
+print(cars1)
+cars1['type']="disel"
+cars1['colors']=["red","yellow"]
+print(cars1)
+print(cars1.get("colors"))
 
-#Methods in Set
+
+#Nested Dictionaries
+
+child1 = {
+  "name" : "Emil",
+  "year" : 2004
+}
+child2 = {
+  "name" : "Tobias",
+  "year" : 2007
+}
+child3 = {
+  "name" : "Linus",
+  "year" : 2011
+}
+
+myfamily = {
+  "child1" : child1,
+  "child2" : child2,
+  "child3" : child3
+} 
+
+print(myfamily["child2"]["name"]) 
+print(myfamily)   #displays whole dictionary
+print(myfamily.keys())
+print(myfamily.values())
+print(myfamily.items())
+print(myfamily.get('child1'))
+print(myfamily.popitem())
+print(myfamily)
+
+for x in myfamily:
+    print(x)
+
+for x,y in myfamily.items():
+    print(x,y)
+
+
 '''
-add()	Adds an element to the set
-clear()	Removes all the elements from the set
-copy()	Returns a copy of the set
-difference()	Returns a set containing the difference between two or more sets
-difference_update()	Removes the items in this set that are also included in another, specified set
-discard()	Remove the specified item
-intersection()	Returns a set, that is the intersection of two other sets
-intersection_update()	Removes the items in this set that are not present in other, specified set(s)
-isdisjoint()	Returns whether two sets have a intersection or not
-issubset()	Returns whether another set contains this set or not
-issuperset()	Returns whether this set contains another set or not
-pop()	Removes an element from the set
-remove()	Removes the specified element
-symmetric_difference()	Returns a set with the symmetric differences of two sets
-symmetric_difference_update()	inserts the symmetric differences from this set and another
-union()	Return a set containing the union of sets
-update()	Update the set with the union of this set and others
+Dictionary Methods
+
+clear()	Removes all the elements from the dictionary
+copy()	Returns a copy of the dictionary
+fromkeys()	Returns a dictionary with the specified keys and value
+get()	Returns the value of the specified key
+items()	Returns a list containing a tuple for each key value pair
+keys()	Returns a list containing the dictionary's keys
+pop()	Removes the element with the specified key
+popitem()	Removes the last inserted key-value pair
+setdefault()	Returns the value of the specified key. If the key does not exist: insert the key, with the specified value
+update()	Updates the dictionary with the specified key-value pairs
+values()	Returns a list of all the values in the dictionary
+
 '''
